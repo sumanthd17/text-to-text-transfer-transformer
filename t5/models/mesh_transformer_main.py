@@ -30,6 +30,8 @@ from t5.models import mtf_model
 import tensorflow.compat.v1 as tf
 import wandb
 
+flags.DEFINE_string("project_name", "")
+
 flags.DEFINE_string(
     "tpu_job_name", None,
     "Name of TPU worker binary. Only necessary if job name is changed from "
@@ -134,8 +136,6 @@ flags.DEFINE_float("temperature", 0.0,
                    "Sampling emperature for predict or export mode.")
 flags.DEFINE_integer("keep_top_k", -1,
                      "Top-k value for predict or export mode.")
-
-flags.DEFINE_string("project_name", "")
 
 FLAGS = flags.FLAGS
 
