@@ -135,7 +135,7 @@ flags.DEFINE_float("temperature", 0.0,
 flags.DEFINE_integer("keep_top_k", -1,
                      "Top-k value for predict or export mode.")
 
-flags.DEFINE_string("project_name")
+flags.DEFINE_string("project_name", "")
 
 FLAGS = flags.FLAGS
 
