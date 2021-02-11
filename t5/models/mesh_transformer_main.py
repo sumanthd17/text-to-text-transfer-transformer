@@ -28,6 +28,7 @@ import t5
 from t5.models import mesh_transformer
 from t5.models import mtf_model
 import tensorflow.compat.v1 as tf
+import wandb
 
 flags.DEFINE_string(
     "tpu_job_name", None,
@@ -265,6 +266,7 @@ def main(_):
         gin.bind_parameter("utils.get_variable_dtype.slice_dtype", "float32")
         gin.bind_parameter(
             "utils.get_variable_dtype.activation_dtype", "float32")
+    wandb.init(config=tf.flags.FLAGS, sync_tensorboard=True)
     utils.run(
         tpu_job_name=FLAGS.tpu_job_name,
         tpu=FLAGS.tpu,
