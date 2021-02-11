@@ -30,7 +30,7 @@ from t5.models import mtf_model
 import tensorflow.compat.v1 as tf
 import wandb
 
-flags.DEFINE_string("project_name", "")
+flags.DEFINE_string("project_name", "", "Please define the project name")
 
 flags.DEFINE_string(
     "tpu_job_name", None,
