@@ -29,6 +29,17 @@ from t5.models import mesh_transformer
 from t5.models import mtf_model
 import tensorflow.compat.v1 as tf
 import wandb
+from mesh_tensorflow.transformer import learning_rate_schedules
+
+@gin.configurable
+def sgdr(step, total_train_steps, interval=10000, initial_lr=0.1):
+  offset = tf.cast(offset, tf.float32)
+  step = tf.cast(step, tf.float32)
+
+  return initial_lr * tf.minimum(1.0, (total_train_steps - (step - (step//interval)*interval)) /
+                                 (total_train_steps - offset))
+
+learning_rate_schedules.sgdr = sgdr
 
 flags.DEFINE_string("project_name", "", "Please define the project name")
 
