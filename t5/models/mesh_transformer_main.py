@@ -32,11 +32,11 @@ import wandb
 from mesh_tensorflow.transformer import learning_rate_schedules
 
 def sgdr(step, total_train_steps, interval=10000, initial_lr=0.1):
-  offset = tf.cast(offset, tf.float32)
   step = tf.cast(step, tf.float32)
+  interval = tf.cast(interval, tf.float32)
 
   return initial_lr * tf.minimum(1.0, (total_train_steps - (step - (step//interval)*interval)) /
-                                 (total_train_steps - offset))
+                                 (total_train_steps))
 
 learning_rate_schedules.sgdr = sgdr
 
