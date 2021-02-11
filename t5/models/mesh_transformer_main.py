@@ -135,6 +135,8 @@ flags.DEFINE_float("temperature", 0.0,
 flags.DEFINE_integer("keep_top_k", -1,
                      "Top-k value for predict or export mode.")
 
+flags.DEFINE_string("project_name")
+
 FLAGS = flags.FLAGS
 
 
@@ -266,7 +268,7 @@ def main(_):
         gin.bind_parameter("utils.get_variable_dtype.slice_dtype", "float32")
         gin.bind_parameter(
             "utils.get_variable_dtype.activation_dtype", "float32")
-    wandb.init(config=tf.flags.FLAGS, sync_tensorboard=True)
+    wandb.init(project=FLAGS.project_name, config=tf.flags.FLAGS, sync_tensorboard=True)
     utils.run(
         tpu_job_name=FLAGS.tpu_job_name,
         tpu=FLAGS.tpu,
