@@ -60,6 +60,7 @@ setuptools.setup(
         'tfds-nightly',
         'torch',
         'transformers>=2.7.0',
+        'wandb',
     ],
     extras_require={
         'gcp': ['gevent', 'google-api-python-client', 'google-compute-engine',
