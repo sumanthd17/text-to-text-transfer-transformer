@@ -31,14 +31,14 @@ import tensorflow.compat.v1 as tf
 import wandb
 from mesh_tensorflow.transformer import learning_rate_schedules
 
-def sgdr(step, total_train_steps, interval=10000, initial_lr=0.1):
-  step = tf.cast(step, tf.float32)
-  interval = tf.cast(interval, tf.float32)
+# def sgdr(step, total_train_steps, interval=10000, initial_lr=0.1):
+#   step = tf.cast(step, tf.float32)
+#   interval = tf.cast(interval, tf.float32)
 
-  return initial_lr * tf.minimum(1.0, (step - (step//interval)*interval) /
-                                 (total_train_steps))
+#   return initial_lr * tf.minimum(1.0, (step - (step//interval)*interval) /
+#                                  (total_train_steps))
 
-learning_rate_schedules.sgdr = sgdr
+# learning_rate_schedules.sgdr = sgdr
 
 flags.DEFINE_string("project_name", "", "Please define the project name")
 
@@ -284,8 +284,8 @@ def main(_):
         tpu=FLAGS.tpu,
         gcp_project=FLAGS.gcp_project,
         tpu_zone=FLAGS.tpu_zone,
-        model_dir=FLAGS.model_dir,
-        learning_rate_schedule=sgdr)
+        model_dir=FLAGS.model_dir)
+        # learning_rate_schedule=sgdr)
 
 
 def console_entry_point():
