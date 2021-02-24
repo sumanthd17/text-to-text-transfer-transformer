@@ -50,15 +50,18 @@ def bleu(targets, predictions):
   """
   print(f'Type of targets: {type(targets)}')
   print(f'Type of predictions: {type(predictions)}')
+  print(predictions[0])
+  print(targets[0])
   # targets = targets.tolist()
   # predictions = predictions.tolist()
-  if isinstance(targets[0], list):
-    targets = [[x for x in target] for target in targets]
-  else:
-    # Need to wrap targets in another list for corpus_bleu.
-    targets = [targets]
+  # if isinstance(targets[0], list):
+  #   targets = [[x for x in target] for target in targets]
+  #   print('going into if condiction')
+  # else:
+  #   # Need to wrap targets in another list for corpus_bleu.
+  #   targets = [targets]
 
-  bleu_score = sacrebleu.corpus_bleu(predictions, targets,
+  bleu_score = sacrebleu.corpus_bleu(predictions, [targets],
                                      smooth_method="exp",
                                      smooth_value=0.0,
                                      force=False,
