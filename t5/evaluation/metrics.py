@@ -59,7 +59,7 @@ def bleu(targets, predictions):
                                      smooth_value=0.0,
                                      force=False,
                                      lowercase=False,
-                                     tokenize="intl",
+                                     tokenize="13a",
                                      use_effective_order=False)
   return {"bleu": bleu_score.score}
 
