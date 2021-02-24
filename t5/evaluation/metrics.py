@@ -48,6 +48,10 @@ def bleu(targets, predictions):
   Returns:
     bleu_score across all targets and predictions
   """
+  print(f'Type of targets: {type(targets)}')
+  print(f'Type of predictions: {type(predictions)}')
+  targets = targets.tolist()
+  predictions = predictions.tolist()
   if isinstance(targets[0], list):
     targets = [[x for x in target] for target in targets]
   else:
